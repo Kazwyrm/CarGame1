@@ -26,13 +26,11 @@ public class PauseGame : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetAxisRaw("Pause") != 0)
+        if (Input.GetAxisRaw("Cancel") != 0)
         {
             pauseMenu.SetActive(true);
 
             // by Tyson
-            // stops time
-            Time.timeScale = 0;
             // disables the controls
             m_movement.DisableControls();
             m_p2Movement.DisableControls();
@@ -44,8 +42,6 @@ public class PauseGame : MonoBehaviour
     // enables the controls when the pause is stopped
     public void ReturnToGame()
     {
-        // sets the time back to normal
-        Time.timeScale = 1;
         // enables the controls
         m_movement.EnableControls();
         m_p2Movement.EnableControls();

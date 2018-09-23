@@ -187,8 +187,9 @@ GameObject:
   - component: {fileID: 241380590}
   - component: {fileID: 241380589}
   - component: {fileID: 241380588}
+  - component: {fileID: 241380592}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -221,7 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -271,6 +272,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &241380592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 241380587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac01f2ae1cbf0ae459315db65401a647, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_controlsCanvas: {fileID: 1582455958}
+  m_panelCanvas: {fileID: 1681420672}
+  m_playButton: {fileID: 1810931880}
+  m_controlsButton: {fileID: 1205408725}
+  m_quitButton: {fileID: 410377294}
+  m_backButton: {fileID: 1537685703}
 --- !u!1 &305108433
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,7 +454,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1681420674}
+      - m_Target: {fileID: 241380592}
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
@@ -1164,7 +1182,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1582455959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1228,7 +1246,6 @@ GameObject:
   - component: {fileID: 1681420673}
   - component: {fileID: 1681420676}
   - component: {fileID: 1681420675}
-  - component: {fileID: 1681420674}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -1257,17 +1274,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1681420674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1681420672}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac01f2ae1cbf0ae459315db65401a647, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1681420675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1515,7 +1521,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1681420674}
+      - m_Target: {fileID: 241380592}
         m_MethodName: PlayGame
         m_Mode: 1
         m_Arguments:

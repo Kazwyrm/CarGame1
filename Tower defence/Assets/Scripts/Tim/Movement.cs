@@ -9,25 +9,18 @@ public class Movement : MonoBehaviour {
     [HideInInspector]
     public float moveForce;
     private float rotTorque;
-    private float hoverHeight;
-	private float hoverForce;
-    private float hoverDamp;
-
-    // used to time how long the speed up power up lasts for
-    private WaitForSeconds m_wait;
-
     public GameObject player;
 
     public Rigidbody rb;
+
+    // used to time how long the speed up power up lasts for
+    private WaitForSeconds m_wait;
 
     // Use this for initialization
     void Start ()
     {
 		moveForce = 40;
-		rotTorque = 4;
-		hoverHeight = 3;
-		hoverForce = 3;
-		hoverDamp = 2;
+		rotTorque = 160;
 		rb = player.GetComponent<Rigidbody>();
 
         // 2 second wait
@@ -37,27 +30,30 @@ public class Movement : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.W)||Input.GetKey(KeyCode.S))
-        {
-            rb.AddForce(Input.GetAxis("Vertical") * moveForce * transform.forward);
-        }
-        
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
-        {
-            rb.AddTorque(Input.GetAxis("Horizontal") * rotTorque * Vector3.up);
-        }
-        RaycastHit hit;
-        Ray downRay = new Ray(transform.position, Vector3.down);
-        if(Physics.Raycast(downRay,out hit))
-        {
-            float hoverError = hoverHeight - hit.distance;
-            if(hoverError > 0)
-            {
-                float upwardSpeed = rb.velocity.y;
-                float lift = hoverError * hoverForce - upwardSpeed * hoverDamp;
-                rb.AddForce(lift * Vector3.up);
-            }
-        }
+        float vertical = Input.GetAxis("VerticalP1");
+        float horizontal = Input.GetAxis("HorizontalP1");
+
+        Move(vertical);
+        Turn(horizontal);
+    }
+
+    // moves the object by the given value
+    public void Move(float v)
+    {
+        // vector in the facing direction
+        Vector3 movement = v * moveForce * Time.deltaTime * player.transform.forward;
+        // moves the object by the vector
+        rb.MovePosition(rb.position + movement);
+    }
+    // turns the object by the given value
+    public void Turn(float h)
+    {
+        // turn amount in degrees
+        float horizontal = h * rotTorque * Time.deltaTime;
+        // euler transform of the turn amount
+        Quaternion rotation = Quaternion.Euler(0.0f, horizontal, 0.0f);
+        // moves the rotation by the euler
+        rb.MoveRotation(rb.rotation * rotation);
     }
 
     // by Tyson
@@ -83,18 +79,12 @@ public class Movement : MonoBehaviour {
     public void EnableControls()
     {
         moveForce = 40;
-        rotTorque = 4;
-        hoverHeight = 3;
-        hoverForce = 3;
-        hoverDamp = 2;
+        rotTorque = 160;
     }
     // nulls the variables
     public void DisableControls()
     {
         moveForce = 0;
         rotTorque = 0;
-        hoverHeight = 0;
-        hoverForce = 0;
-        hoverDamp = 0;
     }
 }
